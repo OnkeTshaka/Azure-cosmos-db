@@ -1,0 +1,42 @@
+﻿
+@model FirewallsAzureProject.Models.MailModel
+@{
+    ViewBag.Title = "Send Notification";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<h1>Send Notification</h1>
+<fieldset>
+    <legend>
+        Send Email
+    </legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+        if (ViewBag.Message != null)
+        {
+            <div style="border:solid 10px green">
+                @ViewBag.Message
+            </div>
+        }
+
+        <p>To: </p>
+        <p>@Html.TextBoxFor(m => m.To)</p>
+        <p>Subject: </p>
+        <p>@Html.TextBoxFor(m => m.Subject)</p>
+        <p>Body: </p>
+        <p>@Html.TextAreaFor(m => m.Body)</p>
+        <p>Attachment: </p>
+        <input name="document" type="file" value="document" />
+        <input type="submit" value="Send" />
+
+        @Html.ActionLink("Click here to return to home", "Index", "Student")
+    }
+</fieldset>
+
+

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<FirewallsAzureProject.Models.Student>
+
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="jumbotron">
+    <h1 class="text-center">The University of Firewalls</h1>
+</div>
+<div style="margin-top:20px;">
+    @using (Html.BeginForm("SearchStudent", "Student", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="form-group" style="float:right;">
+            Search: <input id="name" name="name" type="text" class="form-control" />
+            <span id="error" style="color:red;"></span><br />
+            <input type="submit" value="Submit" class="btn btn-success" />
+
+        </div>
+
+    }
+    <div class="container" style="float:left;">
+        <a type="button" class="btn btn-default btn-success pull-left" style="margin-bottom:50px;" href="@Url.Action("Create", "Student")">Add New Student</a>
+    </div>
+</div>
+
+@if (Model.Count() == 0)
+{
+    <div class="container" colspan="3" style="color:red;font-weight:900">
+        Student doesn't exist!
+    </div>
+
+}
+else
+{
+<table class="table table-bordered table-striped">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.acadademicYear)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.StudentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfilePath)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.acadademicYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isActive)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ProfilePath)
+
+                </td>*@
+            <td><a href="@item.ProfilePath" target="_blank">@item.FirstName</a><br /></td>
+            @*<td><a href="@item.URI" target="_blank">@item.Name</a><br /></td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id, studentNo = item.StudentNumber }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id, studentNo = item.StudentNumber }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id, studentNo = item.StudentNumber })
+            </td>
+        </tr>
+    }
+
+</table>
+}
+
+@section scripts {
+    <script>
+    $(document).ready(function () {
+            $("#name").focusout(function () {
+                if ($(this).val() == "") {
+                    $("#error").text('Search cannot be blank');
+                    $("#name").focusin();
+                }
+                else {
+                    $("#error").text('');
+                }
+            });
+        });</script>
+}

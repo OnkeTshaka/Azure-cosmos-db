@@ -1,0 +1,130 @@
+﻿
+@model IEnumerable<FirewallsAzureProject.Models.Student>
+
+@{ ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<br/>
+<br/>
+
+<div id="update-message" style="margin-bottom:20px;">
+    <h1 class="text-center">List of Registered Students</h1>
+</div>
+<table class="table table-bordered table-striped">
+    <tr>
+        
+        <th>
+            Student Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+        <th>
+            Academic Year &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+
+        <th>
+            Student Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+        <th>
+            Student Surname &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+
+        <th>
+            Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+
+        <th>
+            Home Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+        <th>
+            Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+        <th>
+            Image Link &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+
+
+
+    </tr>
+
+    @*@foreach (var item in Model)
+        {
+
+            < tr >
+            < td > @emp.EmployeeId < /td>
+            < td > @emp.Name < /td>
+            < td > @emp.Gender < /td>
+            < td > @emp.City < /td>
+            < td > @emp.Hire_Date < /td>
+
+            < /tr>
+            } < /tbody>
+
+            < /table>
+
+            < /div> < divclass = "col-sm-2" >
+            < divclass = "btnbtn-success" > @Html.ActionLink("Create Pdf", "CreatePdf", "Home") < /div>
+
+            < /div> < /div>*@
+    @foreach (var item in Model)
+    {
+
+<tr id="row">
+    <td>
+
+
+        @item.StudentNumber &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+    <td>
+
+
+        @item.acadademicYear &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+
+
+    <td>
+        @item.FirstName &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+    <td>
+        @item.LastName  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+    <td>
+        @item.Email  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+    <td>
+        @item.HomeAddress  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+    <td>
+        @item.Mobile  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+    <td><a href="@item.ProfilePath" target="_blank">@item.FirstName</a><br /></td>
+
+
+
+</tr>
+
+    }
+
+
+
+
+
+
+
+</table>
+<div class="container">
+    <a type="button" class="btn btn-default btn-success pull-left" style="margin-bottom:50px;" href="@Url.Action("ExportPDF", "Student")">Create Pdf</a>
+</div>
+
+
+           
+
+
+
+
+
